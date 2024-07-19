@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Reservation</title>
+    <!-- Add your CSS stylesheets and other dependencies here -->
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightskyblue;
+        }
+        h1{
+            background-color: aqua;
+            color: rgb(0, 34, 255);
+            text-align: center;
+        }
+        h2{
+            background-color: aqua;
+            color: rgb(0, 34, 255);
+            text-align: center;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        button{
+            background-color: darkblue;
+            color: rgb(255, 255, 255);
+            float:right;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ELECTRIC VEHICLE CHARGING AND PARKING SYSTEM</h1>
+    </header>
+
+    <section>
+        <h2>Book your Parking Slot</h2>
+        <!-- Add a form for users to book a parking slot -->
+        <form id="bookingForm" action="#" method="post" onsubmit="return confirmBooking()">
+            <!-- Include input fields for user details and preferences -->
+            <label for="name"><b>Name:</b></label>
+            <input type="text" id="name" name="name" required><br>
+
+            <label for="vehicle-number"><b>Vehicle Number:</b></label>
+            <input type="text" id="vehicle-number" name="vehicle-number" required><br>
+
+            <label for="date"><b>Date:</b></label>
+            <input type="date" id="date" name="date" required><br>
+
+            <label for="time"><b>Time:</b></label>
+            <input type="time" id="time" name="time" required><br>
+
+            <p1><button type="submit">Book Now</button></p1>
+        </form>
+    </section>
+
+    <section id="confirmationSection" style="display: none;">
+        <h2>Booking Confirmation</h2>
+        <p>Your booking has been confirmed!</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Parking Reservation System</p>
+    </footer>
+
+    <!-- Add your JavaScript scripts here if necessary -->
+    <script>
+        // Add your JavaScript functions here
+        function confirmBooking() {
+            // Display confirmation message
+            document.getElementById('confirmationSection').style.display = 'block';
+
+            // Prevent the form from submitting (for demo purposes)
+            return false;
+        }
+    </script>
+    <a href="next-page"><button>NEXT</button></a>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electric Vehicle Charging Station</title>
+    <!-- Add your CSS stylesheets and other dependencies here -->
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightskyblue;
+        }
+        h1{
+            background-color: aqua;
+            color: rgb(0, 34, 255);
+            text-align: center;
+        }
+        h2{
+            background-color: aqua;
+            color: rgb(0, 34, 255);
+            text-align: center;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        button{
+            background-color: darkblue;
+            color: rgb(255, 255, 255);
+            float:right;
+        }
+        #billDetailsCharging {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Electric Vehicle Charging Station</h1>
+    </header>
+
+    <section>
+        <h2>Charge Your Electric Vehicle</h2>
+        <!-- Add a form for users to charge their electric vehicle -->
+        <form id="chargingForm" action="#" method="post" onsubmit="return confirmCharging()">
+            <!-- Include input fields for user details and preferences -->
+            <label for="chargeAmount">Enter Charge Amount (kWh):</label>
+            <input type="number" id="chargeAmount" name="chargeAmount" step="0.01" required>
+
+            <label for="parkingHours">Number of Hours Parked:</label>
+            <input type="number" id="parkingHours" name="parkingHours" required>
+
+            <label>Charging Connector Types:</label>
+            <div>
+                <input type="checkbox" id="sscvType1" name="connectorType" value="SSCV TYPE 1">
+                <label for="sscvType1">SSCV TYPE 1</label>
+            </div>
+            <div>
+                <input type="checkbox" id="sscvType2" name="connectorType" value="SSCV TYPE 2">
+                <label for="sscvType2">SSCV TYPE 2</label>
+            </div>
+            <div>
+                <input type="checkbox" id="chademo" name="connectorType" value="CHADeMO">
+                <label for="chademo">CHADeMO</label>
+            </div>
+            <div>
+                <input type="checkbox" id="acType2" name="connectorType" value="AC TYPE 2">
+                <label for="acType2">AC TYPE 2</label>
+            </div>
+
+            <button type="submit">Charge Now</button>
+        </form>
+    </section>
+
+    <section id="confirmationSectionCharging" style="display: none;">
+        <h2>Charging Confirmation</h2>
+        <p>Your vehicle has been connected successfully to the charger.</p>
+        
+        <!-- Display the bill based on kWh and price -->
+        <div id="billDetailsCharging">
+            <p>Bill Details:</p>
+            <ul>
+                <li>Total Charge Amount: <span id="chargeAmountDisplayCharging"></span> kWh</li>
+                <li>Price per kWh: 0.126 INR</li>
+                <li>Total Hours Parked: <span id="parkingHoursDisplayCharging"></span> hours</li>
+                <li>Additional Cost (30 INR per hour): <span id="additionalCostDisplayCharging"></span> INR</li>
+                <li>Total Price: <span id="totalPriceDisplayCharging"></span> INR</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Electric Vehicle Charging Station</p>
+    </footer>
+
+    <!-- Add your JavaScript scripts here if necessary -->
+    <script>
+        // Add your JavaScript functions here
+        function confirmCharging() {
+            // Display confirmation message
+            document.getElementById('confirmationSectionCharging').style.display = 'block';
+
+            // Collect form inputs
+            var chargeAmount = parseFloat(document.getElementById('chargeAmount').value);
+            var parkingHours = parseInt(document.getElementById('parkingHours').value);
+            var connectorTypes = document.querySelectorAll('input[name="connectorType"]:checked');
+            
+            // Calculate the bill
+            var pricePerKwh = 0.126;
+            var additionalCostPerHour = 30;
+            
+            var totalPrice = (chargeAmount * pricePerKwh) + (parkingHours * additionalCostPerHour);
+
+            // Display the bill details
+            document.getElementById('billDetailsCharging').style.display = 'block';
+            document.getElementById('chargeAmountDisplayCharging').innerText = chargeAmount;
+            document.getElementById('parkingHoursDisplayCharging').innerText = parkingHours;
+            document.getElementById('additionalCostDisplayCharging').innerText = (parkingHours * additionalCostPerHour).toFixed(2); // Display with 2 decimal places
+            document.getElementById('totalPriceDisplayCharging').innerText = totalPrice.toFixed(2); // Display with 2 decimal places
+
+            // Prevent the form from submitting (for demo purposes)
+            return false;
+        }
+    </script>
+    <a href="next-page"><button>NEXT</button></a>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPI Payment</title>
+    <!-- Add your CSS stylesheets and other dependencies here -->
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightskyblue;
+        }
+        h1{
+            background-color: aqua;
+            color: rgb(0, 34, 255);
+            text-align: center;
+        }
+        h2{
+            background-color: aqua;
+            color: rgb(0, 34, 255);
+            text-align: center;
+        }
+        button{
+            background-color: darkblue;
+            color: rgb(255, 255, 255);
+            float:right;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>UPI Payment</h1>
+    </header>
+
+    <section>
+        <h2>Pay Amount using UPI</h2>
+        <!-- Add a form for users to make a UPI payment -->
+        <form id="paymentForm" action="#" method="post" onsubmit="return initiatePayment()">
+            <!-- Include input fields for payment details -->
+            <label for="upiApp">Select UPI App:</label>
+            <select id="upiApp" name="upiApp" required>
+                <option value="googlePay">Google Pay</option>
+                <option value="phonePe">PhonePe</option>
+                <option value="payTM">PayTM</option>
+		<option value="paypal">Paypal</option>
+		<option value="rupay">rupay</option>
+                <!-- Add more UPI apps as needed -->
+            </select><br>
+
+            <label for="upiID">Your UPI ID:</label>
+            <input type="text" id="upiID" name="upiID" required><br>
+
+            <label for="paymentAmount">Payment Amount (INR):</label>
+            <input type="number" id="paymentAmount" name="paymentAmount" step="0.01" required><br>
+
+            <button type="submit">Initiate Payment</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 UPI Payment</p>
+    </footer>
+
+    <!-- Add your JavaScript scripts here if necessary -->
+    <script>
+        // Add your JavaScript functions here
+        function initiatePayment() {
+            // Handle the initiation of the payment
+            alert("Payment initiated successfully! Please complete the payment in your selected UPI app.");
+            
+            // Prevent the form from submitting (for demo purposes)
+            return false;
+        }
+    </script>
+    <a href="next-page"><button>NEXT</button></a>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electric Vehicle Charging Station Feedback</title>
+    <!-- Add your CSS stylesheets and other dependencies here -->
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightskyblue;
+        }
+        h1{
+            background-color: aqua;
+            color: rgb(0, 34, 255);
+            text-align: center;
+        }
+        h2{
+            background-color: aqua;
+            color: rgb(0, 34, 255);
+            text-align: center;
+        }
+        button{
+            background-color: darkblue;
+            color: rgb(255, 255, 255);
+            float:right;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Electric Vehicle Charging Station Feedback</h1>
+    </header>
+
+    <section>
+        <h2>We'd Love to Hear Your Feedback</h2>
+        <!-- Add a form for users to provide feedback -->
+        <form id="feedbackForm" action="#" method="post" onsubmit="return submitFeedback()">
+            <!-- Include input fields for feedback details -->
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required><br>
+
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" required><br>
+
+            <label for="rating">Rate Your Experience (1-5):</label>
+            <input type="number" id="rating" name="rating" min="1" max="5" required><br>
+
+            <label for="feedbackMessage">Feedback Message:</label><br>
+            <textarea id="feedbackMessage" name="feedbackMessage" rows="4" required></textarea>
+
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Electric Vehicle Charging Station</p>
+    </footer>
+
+    <!-- Add your JavaScript scripts here if necessary -->
+    <script>
+        // Add your JavaScript functions here
+        function submitFeedback() {
+            // Handle the submission of feedback
+            alert("Thank you for your feedback! We appreciate your input.");
+            
+            // Prevent the form from submitting (for demo purposes)
+            return false;
+        }
+    </script>
+    <a href="next-page"><button>SUMBIT</button></a>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THANK YOU !!!</title>
+    <!-- Add your CSS stylesheets and other dependencies here -->
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightskyblue;
+        }
+        h1{
+            font-size: 100px;
+            color: black;
+            text-align: center;
+            text-decoration: solid;
+            border:white;
+            padding: 170px;
+        }
+        button{
+            background-color: darkblue;
+            color: rgb(255, 255, 255);
+            float:right;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><B>THANK YOU !!!</B></h1>
+        <a href="close()"><button>CLOSE</button></a>
+    </header>
